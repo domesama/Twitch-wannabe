@@ -40,7 +40,7 @@ export class StreamCreate extends Component {
             labelName="Enter Description"
           />
 
-          <button type="submit" className="ui right floated teal button">
+          <button type="submit" className="ui left floated teal button">
             Submit
           </button>
         </form>
