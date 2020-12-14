@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 export class StreamCreate extends Component {
-  reunderInput = ({ input, labelName }) => {
+  renderInput = ({ input, labelName, meta }) => {
     // return (
     //   <input
     //     type="text"
@@ -11,12 +11,25 @@ export class StreamCreate extends Component {
     //     value={formProps.input.value}
     //   />
     // );
+    const className = `field ${meta.error && meta.touched ? "error" : ""}`;
     return (
-      <div className="field">
+      <div className={className}>
         <label className="ui header"> {labelName}</label>
-        <input {...input} />
+        <input {...input} autoComplete="off" />
+        {this.renderError(meta)}
       </div>
     );
+  };
+
+  renderError = ({ error, touched }) => {
+    // console.log(error);
+    if (touched && error) {
+      return (
+        <div className="ui error message">
+          <div className="header">{error}</div>
+        </div>
+      );
+    }
   };
 
   onSubmit = (formValues) => {
@@ -26,17 +39,17 @@ export class StreamCreate extends Component {
     return (
       <div>
         <form
-          className="ui form"
+          className="ui form error"
           onSubmit={this.props.handleSubmit(this.onSubmit)}
         >
           <Field
             name="title"
-            component={this.reunderInput}
+            component={this.renderInput}
             labelName="Enter Title"
           />
           <Field
             name="description"
-            component={this.reunderInput}
+            component={this.renderInput}
             labelName="Enter Description"
           />
 
@@ -49,6 +62,18 @@ export class StreamCreate extends Component {
   }
 }
 
+const validate = (formValues) => {
+  const errors = {};
+  if (!formValues.title) {
+    errors["title"] = "You must enter a title";
+  }
+  if (!formValues.description) {
+    errors["description"] = "You must enter a description";
+  }
+  return errors;
+};
+
 export default reduxForm({
   form: "streamCreate",
+  validate: validate,
 })(StreamCreate);
