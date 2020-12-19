@@ -59,8 +59,31 @@ function StreamList({ fetchAllStreams, streams, auth }) {
   };
 
   return (
-    <div className="ui three column doubling stackable grid container">
-      {fetchListsOfStreams()}
+    <div>
+      <div
+        className="ui three column doubling stackable relaxed centered grid container"
+        style={{ paddingTop: "50px" }}
+      >
+        {fetchListsOfStreams()}
+        {console.log(streams)}
+        <div className="row">
+          <div className="center aligned fifteen wide column row">
+            {streams.length === 0 ? (
+              <div className="center floated ui teal button">
+                {" "}
+                Create Stream{" "}
+              </div>
+            ) : (
+              <div>
+                <div className="ui divider"></div> <br />
+                <div className="right floated ui teal button">
+                  Create Stream
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
