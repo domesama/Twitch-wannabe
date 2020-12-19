@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { fetchAllStreams } from "../../actions";
 
-function StreamList({ fetchAllStreams, streams }) {
+function StreamList({ fetchAllStreams, streams, auth }) {
   useEffect(() => {
     fetchAllStreams();
     // console.log(streams);
@@ -27,12 +27,12 @@ function StreamList({ fetchAllStreams, streams }) {
     return streams.map((stream) => {
       return (
         <div className="column" key={stream["id"]}>
-          <div className="ui centered card ">
+          <div className="ui raised centered card ">
             <h2
               className="ui center aligned icon header"
-              style={{ paddingTop: "25px" }}
+              style={{ paddingTop: "30px" }}
             >
-              <i className="ui icon camera"></i>
+              <i className="ui icon camera" style={{ marginBottom: "0px" }}></i>
             </h2>
             <div
               className="ui center aligned header"
@@ -40,8 +40,17 @@ function StreamList({ fetchAllStreams, streams }) {
             >
               {stream["title"]}
             </div>
+
             <div className="extra" style={{ textAlign: "center" }}>
               {stream["description"]}
+              {stream["userId"] === auth["userId"] ? (
+                <div className="">
+                  {/* <div className="ui horizontal divider"> stuff</div> */}
+                  <div className="ui  divider"> </div>
+                  <div className="ui teal button"> Edit</div>
+                  <div className="ui red button"> Delete</div>
+                </div>
+              ) : null}
             </div>
           </div>
         </div>
@@ -59,6 +68,7 @@ function StreamList({ fetchAllStreams, streams }) {
 const mapStateToProps = (state) => {
   return {
     streams: Object.values(state.streams),
+    auth: state.auth,
     // streams: state.streams,
   };
 };
