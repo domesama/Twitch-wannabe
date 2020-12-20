@@ -69,10 +69,7 @@ function StreamList({ fetchAllStreams, streams, auth }) {
         <div className="row">
           <div className="center aligned fifteen wide column row">
             {streams.length === 0 ? (
-              <div className="center floated ui teal button">
-                {" "}
-                Create Stream{" "}
-              </div>
+              <div className="center floated ui teal button">Create Stream</div>
             ) : (
               <div>
                 <div className="ui divider"></div> <br />
