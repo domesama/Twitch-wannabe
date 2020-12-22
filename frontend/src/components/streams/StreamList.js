@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { fetchAllStreams } from "../../actions";
+import { Link } from "react-router-dom";
 
 function StreamList({ fetchAllStreams, streams, auth }) {
   useEffect(() => {
@@ -69,13 +70,18 @@ function StreamList({ fetchAllStreams, streams, auth }) {
         <div className="row">
           <div className="center aligned fifteen wide column row">
             {streams.length === 0 ? (
-              <div className="center floated ui teal button">Create Stream</div>
+              <Link to="/streams/new" className="center floated ui teal button">
+                Create Stream
+              </Link>
             ) : (
               <div>
                 <div className="ui divider"></div> <br />
-                <div className="right floated ui teal button">
+                <Link
+                  to="/streams/new"
+                  className="right floated ui teal button"
+                >
                   Create Stream
-                </div>
+                </Link>
               </div>
             )}
           </div>
