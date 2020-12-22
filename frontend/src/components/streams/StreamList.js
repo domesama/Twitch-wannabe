@@ -48,8 +48,18 @@ function StreamList({ fetchAllStreams, streams, auth }) {
                 <div className="">
                   {/* <div className="ui horizontal divider"> stuff</div> */}
                   <div className="ui  divider"> </div>
-                  <div className="ui teal button"> Edit</div>
-                  <div className="ui red button"> Delete</div>
+                  <Link
+                    to={`streams/edit/${stream["id"]}`}
+                    className="ui teal button"
+                  >
+                    Edit
+                  </Link>
+                  <Link
+                    to={`streams/delete/${stream["id"]}`}
+                    className="ui red button"
+                  >
+                    Delete
+                  </Link>
                 </div>
               ) : null}
             </div>
@@ -66,7 +76,7 @@ function StreamList({ fetchAllStreams, streams, auth }) {
         style={{ paddingTop: "50px" }}
       >
         {fetchListsOfStreams()}
-        {console.log(streams)}
+
         <div className="row">
           <div className="center aligned fifteen wide column row">
             {streams.length === 0 ? (
