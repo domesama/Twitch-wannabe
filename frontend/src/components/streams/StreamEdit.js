@@ -1,9 +1,13 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { updateStream, fetchSingleStream } from "../../actions";
-import { Field, reduxForm } from "redux-form";
+import StreamForm from "./StreamForm";
 
 function StreamEdit({ targetStream, updateStream, fetchSingleStream, match }) {
+  const formCallback = (formValues) => {
+    updateStream(formValues);
+  };
+
   useEffect(() => {
     fetchSingleStream(match.params.id);
   }, [fetchSingleStream, match]);
@@ -11,7 +15,7 @@ function StreamEdit({ targetStream, updateStream, fetchSingleStream, match }) {
   return !targetStream ? (
     <div> Loading . . .</div>
   ) : (
-    <div>{targetStream.title}</div>
+    <StreamForm formCallback={formCallback}></StreamForm>
   );
 }
 const mapStateToProps = (state, ownProps) => {
