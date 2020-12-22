@@ -42,7 +42,10 @@ function StreamList({ fetchAllStreams, streams, auth }) {
               {stream["title"]}
             </div>
 
-            <div className="extra" style={{ textAlign: "center" }}>
+            <div
+              className="extra"
+              style={{ textAlign: "center", overflowWrap: "anywhere" }}
+            >
               {stream["description"]}
               {stream["userId"] === auth["userId"] ? (
                 <div className="">
