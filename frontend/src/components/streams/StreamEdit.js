@@ -5,7 +5,8 @@ import StreamForm from "./StreamForm";
 
 function StreamEdit({ targetStream, updateStream, fetchSingleStream, match }) {
   const formCallback = (formValues) => {
-    updateStream(formValues);
+    updateStream(match.params.id, formValues);
+    // console.log(formValues);
   };
 
   useEffect(() => {
@@ -15,7 +16,18 @@ function StreamEdit({ targetStream, updateStream, fetchSingleStream, match }) {
   return !targetStream ? (
     <div> Loading . . .</div>
   ) : (
-    <StreamForm formCallback={formCallback}></StreamForm>
+    <div>
+      <h2> Edit your stream!</h2>
+      <StreamForm
+        formCallback={formCallback}
+        //We can also do lodash's _.pick() here
+        //initialValues={ _.pick(targetStream, 'title', 'description')}
+        initialValues={{
+          title: targetStream.title,
+          description: targetStream.description,
+        }}
+      ></StreamForm>
+    </div>
   );
 }
 const mapStateToProps = (state, ownProps) => {

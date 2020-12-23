@@ -11,7 +11,7 @@ export class StreamCreate extends Component {
   render() {
     return (
       <div>
-        <h3>Create a stream!</h3>
+        <h2>Create a stream!</h2>
         <StreamForm formCallback={this.formCallback}></StreamForm>
       </div>
     );

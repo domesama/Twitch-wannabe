@@ -58,8 +58,9 @@ export const fetchSingleStream = (id) => {
 
 export const updateStream = (id, content) => {
   return async (dispatch) => {
-    const res = await streams.put(`/streams/${id}`, content);
+    const res = await streams.patch(`/streams/${id}`, content);
     dispatch({ type: EDIT_STREAM, payload: res.data });
+    history.push("/");
   };
 };
 
