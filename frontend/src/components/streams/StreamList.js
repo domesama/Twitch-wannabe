@@ -28,8 +28,8 @@ function StreamList({ fetchAllStreams, streams, auth }) {
     return streams.map((stream) => {
       return (
         <div className="column" key={stream["id"]}>
-          <Link to={`streams/${stream["id"]}`}>
-            <div className="ui raised centered card ">
+          <div className="ui raised centered card ">
+            <Link to={`streams/${stream["id"]}`}>
               <h2
                 className="ui center aligned icon header"
                 style={{ paddingTop: "30px" }}
@@ -45,33 +45,32 @@ function StreamList({ fetchAllStreams, streams, auth }) {
               >
                 {stream["title"]}
               </div>
+            </Link>
 
-              <div
-                className="extra"
-                style={{ textAlign: "center", overflowWrap: "anywhere" }}
-              >
-                {stream["description"]}
-                {stream["userId"] === auth["userId"] ? (
-                  <div className="">
-                    {/* <div className="ui horizontal divider"> stuff</div> */}
-                    <div className="ui  divider"> </div>
-                    <Link
-                      to={`streams/edit/${stream["id"]}`}
-                      className="ui teal button"
-                    >
-                      Edit
-                    </Link>
-                    <Link
-                      to={`streams/delete/${stream["id"]}`}
-                      className="ui red button"
-                    >
-                      Delete
-                    </Link>
-                  </div>
-                ) : null}
-              </div>
+            <div
+              className="extra"
+              style={{ textAlign: "center", overflowWrap: "anywhere" }}
+            >
+              {stream["description"]}
+              {stream["userId"] === auth["userId"] ? (
+                <div className="">
+                  <div className="ui  divider"> </div>
+                  <Link
+                    to={`streams/edit/${stream["id"]}`}
+                    className="ui teal button"
+                  >
+                    Edit
+                  </Link>
+                  <Link
+                    to={`streams/delete/${stream["id"]}`}
+                    className="ui red button"
+                  >
+                    Delete
+                  </Link>
+                </div>
+              ) : null}
             </div>
-          </Link>
+          </div>
         </div>
       );
     });
