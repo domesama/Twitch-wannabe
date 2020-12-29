@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { fetchAllStreams } from "../../actions";
 import { Link } from "react-router-dom";
@@ -30,31 +30,39 @@ function StreamList({ fetchAllStreams, streams, auth }) {
         <div className="column" key={stream["id"]}>
           <div className="ui raised centered card ">
             <Link to={`streams/${stream["id"]}`}>
-              <h2
-                className="ui center aligned icon header"
-                style={{ paddingTop: "30px" }}
-              >
-                <i
-                  className="ui icon camera"
-                  style={{ marginBottom: "0px" }}
-                ></i>
-              </h2>
-              <div
-                className="ui center aligned header"
-                style={{ marginTop: "0px" }}
-              >
-                {stream["title"]}
+              <div className="content" style={{ paddingBottom: "20px" }}>
+                <h2
+                  className="ui center aligned icon header"
+                  style={{ paddingTop: "30px" }}
+                >
+                  <i
+                    className="ui icon camera"
+                    style={{ marginBottom: "0px" }}
+                  ></i>
+                </h2>
+                <div
+                  className="ui center aligned header"
+                  style={{ marginTop: "0px" }}
+                >
+                  {stream["title"]}
+                </div>
+                <div
+                  style={{
+                    textAlign: "center",
+                    overflowWrap: "anywhere",
+                    color: "black",
+                    textDecorationColor: "olive",
+                  }}
+                >
+                  {stream["description"]}
+                </div>
               </div>
             </Link>
 
-            <div
-              className="extra"
-              style={{ textAlign: "center", overflowWrap: "anywhere" }}
-            >
-              {stream["description"]}
-              {stream["userId"] === auth["userId"] ? (
+            {stream["userId"] === auth["userId"] ? (
+              <div className="extra" style={{ textAlign: "center" }}>
                 <div className="">
-                  <div className="ui  divider"> </div>
+                  {/* <div className="ui  divider"> </div> */}
                   <Link
                     to={`streams/edit/${stream["id"]}`}
                     className="ui teal button"
@@ -68,8 +76,8 @@ function StreamList({ fetchAllStreams, streams, auth }) {
                     Delete
                   </Link>
                 </div>
-              ) : null}
-            </div>
+              </div>
+            ) : null}
           </div>
         </div>
       );
