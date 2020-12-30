@@ -9,12 +9,13 @@ function StreamShow({ fetchSingleStream, match, stream }) {
 
   useEffect(() => {
     fetchSingleStream(match.params.id);
+    let player = null;
 
     const buildPlayer = () => {
-      // if (player != null) {
-      //   return;
-      // }
-      const player = flv.createPlayer({
+      if (player != null) {
+        return;
+      }
+      player = flv.createPlayer({
         type: "flv",
         url: `http://localhost:8000/live/${match.params.id}.flv`,
       });
@@ -24,6 +25,7 @@ function StreamShow({ fetchSingleStream, match, stream }) {
       }
     };
     buildPlayer();
+    return () => player.destroy();
   }, [fetchSingleStream, match, isRefNull]);
 
   return !stream ? (
