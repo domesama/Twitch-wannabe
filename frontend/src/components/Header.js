@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import GoogleAuth from "../components/GoogleAuth";
 function Header() {
   return (
-    <div className="ui secondary pointing menu">
+    <div className="ui secondary pointing menu" style={{ fontSize: "16px" }}>
       <Link to="/" className="item">
         Streamer
       </Link>
