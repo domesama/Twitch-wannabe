@@ -24,7 +24,6 @@ function StreamShow({ fetchSingleStream, match, stream }) {
       }
     };
     buildPlayer();
-    return () => buildPlayer();
   }, [fetchSingleStream, match, isRefNull]);
 
   return !stream ? (
